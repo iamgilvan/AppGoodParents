@@ -7,12 +7,62 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>cadastro</ion-title>
+    <ion-title>Cadatro</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+    <form padding [formGroup]="usuario" (ngSubmit)="postDados()" novalidate>
+      <!--
+        <ion-item>
+          <ion-label floating>Foto</ion-label>  
+          <img src="{{ photo }}" />            
+          <button ion-button clear small color="primary" icon-left (click)="takePicture('picture')">
+              <ion-icon name="camera"></ion-icon>
+                Câmera
+          </button>
+          <button ion-button clear small color="primary" icon-left (click)="takePicture('gallery')">
+            <ion-icon name="albums"></ion-icon>
+            Galeria
+          </button>
+        </ion-item>
+-->
+        <ion-item>
+          <ion-label floating>Name</ion-label>
+          <ion-input type="text" name="nome" formControlName="nome" minlength="2" required></ion-input>
+        </ion-item>
 
+        <ion-item>
+          <ion-label floating>Último Nome</ion-label>
+          <ion-input type="text" name="sobrenome" formControlName="sobrenome" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>E-mail</ion-label>
+          <ion-input type="email" name="email" formControlName="email" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Senha</ion-label>
+            <ion-input required type="password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Data de Nascimento</ion-label>
+          <ion-datetime displayFormat="D/M/YYYY" pickerFormat="D/M/YYYY" name="dtNascimento" formControlName="dtNascimento"></ion-datetime>
+          <!--<input type="date" name="dtNascimento" formControlName="dtNascimento" required>-->
+        </ion-item>
+        
+        <ion-item>
+            <ion-label floating>É padrinho?</ion-label>
+            <ion-select formControlName="padrinho">
+              <ion-option value="false">Não</ion-option>
+              <ion-option value="true">Sim</ion-option>
+            </ion-select>
+
+        </ion-item>
+
+      <button ion-button positive full block type="submit" [disabled]="usuario.invalid">Salvar</button>
+    </form>
 </ion-content>
