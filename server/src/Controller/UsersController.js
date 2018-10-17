@@ -37,7 +37,7 @@ exports.getAllUser = (req, res, next) => {
       return res.status(500).send({error: err})
 
     if (!users || users.length === 0)
-      return res.status(404).send('User not found!')
+      return res.status(404).send('Users not found!')
 
     return res.status(200).json(users)
   })
@@ -64,8 +64,19 @@ exports.updateUser = (req,res, next) => {
       return res.status(404).send('User not found!')
 
     user.set({
-      nome: req.body.nome,
-      senha: req.body.senha
+      email:        req.body.email,
+      senha:        req.body.senha,
+      nome:         req.body.nome,
+      sobrenome:    req.body.sobrenome,
+      nascimento:   req.body.nascimento,
+      estado:       req.body.estado,
+      padrinho:     req.body.padrinho,
+      facilidade:   req.body.facilidade,
+      dificuldade:  req.body.dificuldade,
+      esportes:     req.body.esportes,
+      musicas:      req.body.musicas,
+      descricao:    req.body.descricao,
+      filmes:       req.body.filmes
     })
 
     user.save((err, userUpdated) => {
@@ -74,7 +85,7 @@ exports.updateUser = (req,res, next) => {
 
       return res.status(200).send({
         message: 'User updated successfully!',
-        user: userUpdated
+        User: userUpdated
       })
     })
   })
