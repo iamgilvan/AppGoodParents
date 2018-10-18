@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+//import { UsersProvider } from '../../providers/users/users';
 import { transition } from '@angular/core/src/animation/dsl';
 import { PhotoLibrary } from '@ionic-native/photo-library';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -11,19 +11,28 @@ import { FormBuilder, Validators } from '@angular/forms';
   templateUrl: 'cadastro.html',
 })
 export class CadastroPage {
-  usuario : any = {};
-  photo: string = '';
+  private usuario : FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private camera: Camera, public formBuilder : FormBuilder) 
+  constructor(public navCtrl: NavController,
+     //public userService: UsersProvider,
+     public navParams: NavParams,
+     public formBuilder : FormBuilder) 
   {
     this.usuario = this.formBuilder.group
     ({
         nome: ['', Validators.required],
         sobrenome: ['', Validators.required],
         email: ['', Validators.required],
-        password: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(20), Validators.required])],
-        dtNascimento : ['', Validators.required],
-        padrinho: ['', Validators.required]
+        senha: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(20), Validators.required])],
+        nascimento : ['', Validators.required],
+        padrinho: ['', Validators.required],
+        estado: ['', Validators.required],
+        facilidade : ['', Validators.required],
+        dificuldade: ['', Validators.required],
+        esportes: ['', Validators.required],
+        musicas : ['', Validators.required],
+        descricao: ['', Validators.required],
+        filmes: ['', Validators.required]
 
     });
   }
@@ -31,37 +40,17 @@ export class CadastroPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CadastroPage');
   }
-/*
-  takePicture() {
-    this.photo = '';
- 
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE,
-      allowEdit: true,
-      targetWidth: 100,
-      targetHeight: 100
-    }
- 
-    this.camera.getPicture(options)
-      .then((imageData) => {
-        let base64image = 'data:image/jpeg;base64,' + imageData;
-        this.photo = base64image;
- 
-      }, (error) => {
-        console.error(error);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-  }
-*/
+
   postDados()
   {
+    //this.userService.createUsers(this.usuario);
     console.log(this.usuario.value);
+  }
 
+  addReview(){
+ 
+    
+ 
   }
 
 }

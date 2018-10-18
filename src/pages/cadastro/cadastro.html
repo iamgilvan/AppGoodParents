@@ -7,27 +7,39 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Cadatro</ion-title>
+    <ion-title>Cadastro</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
-    <form padding [formGroup]="usuario" (ngSubmit)="postDados()" novalidate>
-      <!--
-        <ion-item>
-          <ion-label floating>Foto</ion-label>  
-          <img src="{{ photo }}" />            
-          <button ion-button clear small color="primary" icon-left (click)="takePicture('picture')">
+  
+      
+    <form padding [formGroup]="usuario" (ngSubmit)="postDados()" class="form">
+        
+                 <!--
+          <ion-label floating>Foto</ion-label> 
+          <p align="center"><img src="{{ photo }}"></p> 
+          <button ion-button clear small color="primary" icon-left (click)="takePicture('1')"><ion-icon name="camera"></ion-icon>Câmera</button>
+          <button ion-button clear small color="primary" icon-right (click)="getImage()"><ion-icon name="albums"></ion-icon>Galeria</button>
+
+          <button ion-button (click)="takePhoto()" small color="primary"><ion-icon name="camera"></ion-icon>Câmera</button>
+          <button ion-button (click)="getImage()" small color="secondary"><ion-icon name="albums"></ion-icon>Galeria</button>           
+            <ion-item>
+            <img src="{{ photo }}" /> 
+          <button ion-button small color="primary" (click)="takePicture(1)">
               <ion-icon name="camera"></ion-icon>
                 Câmera
           </button>
-          <button ion-button clear small color="primary" icon-left (click)="takePicture('gallery')">
+          <button ion-button small color="primary" (click)="takePicture(0)">
             <ion-icon name="albums"></ion-icon>
             Galeria
           </button>
         </ion-item>
 -->
+      <ion-list no-lines>
+        
+
         <ion-item>
           <ion-label floating>Name</ion-label>
           <ion-input type="text" name="nome" formControlName="nome" minlength="2" required></ion-input>
@@ -45,24 +57,138 @@
 
         <ion-item>
             <ion-label floating>Senha</ion-label>
-            <ion-input required type="password" formControlName="password"></ion-input>
+            <ion-input required type="password" formControlName="senha"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label floating>Data de Nascimento</ion-label>
-          <ion-datetime displayFormat="D/M/YYYY" pickerFormat="D/M/YYYY" name="dtNascimento" formControlName="dtNascimento"></ion-datetime>
+          <ion-datetime required displayFormat="D/M/YYYY" pickerFormat="D/M/YYYY" name="nascimento" formControlName="nascimento"></ion-datetime>
           <!--<input type="date" name="dtNascimento" formControlName="dtNascimento" required>-->
         </ion-item>
-        
+
+        <ion-item>
+          <ion-label floating>Estado origem</ion-label>
+          <ion-select required okText="Selecionar" cancelText="Voltar" formControlName="estado">
+            <ion-option value="AC">Acre</ion-option>
+            <ion-option value="AL">Alagoas</ion-option>
+            <ion-option value="AP">Amapá</ion-option>
+            <ion-option value="AM">Amazonas</ion-option>
+            <ion-option value="BA">Bahia</ion-option>
+            <ion-option value="CE">Ceará</ion-option>
+            <ion-option value="DF">Distrito Federal</ion-option>
+            <ion-option value="ES">Espírito Santo</ion-option>
+            <ion-option value="GO">Goiás</ion-option>
+            <ion-option value="MA">Maranhão</ion-option>
+            <ion-option value="MT">Mato Grosso</ion-option>
+            <ion-option value="MS">Mato Grosso do Sul</ion-option>
+            <ion-option value="MG">Minas Gerais</ion-option>
+            <ion-option value="PA">Pará</ion-option>
+            <ion-option value="PB">Paraíba</ion-option>
+            <ion-option value="PR">Paraná</ion-option>
+            <ion-option value="PE">Pernambuco</ion-option>
+            <ion-option value="PI">Piauí</ion-option>
+            <ion-option value="RJ">Rio de Janeiro</ion-option>
+            <ion-option value="RN">Rio Grande do Nort</ion-option>
+            <ion-option value="RS">Rio Grande do Sul</ion-option>
+            <ion-option value="RO">Rondônia</ion-option>
+            <ion-option value="RR">Roraima</ion-option>
+            <ion-option value="SC">Santa Catarina</ion-option>
+            <ion-option value="SP">São Paulo</ion-option>
+            <ion-option value="SE">Sergipe</ion-option>
+            <ion-option value="TO">Tocantins</ion-option>
+          </ion-select>
+        </ion-item>
+
         <ion-item>
             <ion-label floating>É padrinho?</ion-label>
-            <ion-select formControlName="padrinho">
+            <ion-select required formControlName="padrinho">
               <ion-option value="false">Não</ion-option>
               <ion-option value="true">Sim</ion-option>
             </ion-select>
-
         </ion-item>
 
-      <button ion-button positive full block type="submit" [disabled]="usuario.invalid">Salvar</button>
+        <ion-item>
+          <ion-label floating>Matéria que possui <strong>facilidade</strong>?</ion-label>
+          <ion-select required okText="Selecionar" cancelText="Voltar" formControlName="facilidade" multiple="true">
+            <ion-option value="português">Português</ion-option>
+            <ion-option value="matemática">Matemática</ion-option>
+            <ion-option value="história">História</ion-option>
+            <ion-option value="geografia">Geografia</ion-option>
+            <ion-option value="biologia">Biologia</ion-option>
+            <ion-option value="biografia">Biografia</ion-option>
+            <ion-option value="física">Física</ion-option>
+            <ion-option value="química">Química</ion-option>
+            <ion-option value="inglês">Inglês</ion-option>
+            <ion-option value="espanhol">Espanhol</ion-option>
+            <ion-option value="filosofia">Filosofia</ion-option>
+            <ion-option value="sociologia">Sociologia</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Matéria que possui <strong>dificuldade</strong>?</ion-label>
+          <ion-select required okText="Selecionar" cancelText="Voltar" formControlName="dificuldade" multiple="true">
+            <ion-option value="português">Português</ion-option>
+            <ion-option value="matemática">Matemática</ion-option>
+            <ion-option value="história">História</ion-option>
+            <ion-option value="geografia">Geografia</ion-option>
+            <ion-option value="biologia">Biologia</ion-option>
+            <ion-option value="biografia">Biografia</ion-option>
+            <ion-option value="física">Física</ion-option>
+            <ion-option value="química">Química</ion-option>
+            <ion-option value="inglês">Inglês</ion-option>
+            <ion-option value="espanhol">Espanhol</ion-option>
+            <ion-option value="filosofia">Filosofia</ion-option>
+            <ion-option value="sociologia">Sociologia</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Esportes que curti</ion-label>
+          <ion-select required okText="Selecionar" cancelText="Voltar" formControlName="esportes" multiple="true">
+            <ion-option value="futebol">Futebol</ion-option>
+            <ion-option value="vôlei">Vôlei</ion-option>
+            <ion-option value="tênis de Mesa">Tênis de Mesa</ion-option>
+            <ion-option value="natação">Natação</ion-option>
+            <ion-option value="futsal">Futsal</ion-option>
+            <ion-option value="capoeira">Capoeira</ion-option>
+            <ion-option value="skate">Skate</ion-option>
+            <ion-option value="surfe">Surfe</ion-option>
+            <ion-option value="judô">Judô</ion-option>
+            <ion-option value="atletismo">Atletismo</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label floating>Tipos de filme que gosta.</ion-label>
+          <ion-select required okText="Selecionar" cancelText="Voltar" formControlName="filmes" multiple="true">
+              <ion-option value="ação">Ação</ion-option>
+              <ion-option value="animação">Animação</ion-option>
+              <ion-option value="aventura">Aventura</ion-option>
+              <ion-option value="comédia">Comédia</ion-option>
+              <ion-option value="documentários">Documentários</ion-option>
+              <ion-option value="drama">Drama</ion-option>
+              <ion-option value="fantasia">Fantasia</ion-option>
+              <ion-option value="faroeste">Faroeste</ion-option>
+              <ion-option value="ficção científica">Ficção científica</ion-option>
+              <ion-option value="séries">Séries</ion-option>
+              <ion-option value="guerra">Guerra</ion-option>
+              <ion-option value="musical">Musical</ion-option>
+              <ion-option value="policial">Policial</ion-option>
+              <ion-option value="romance">Romance</ion-option>
+              <ion-option value="suspense">Suspense</ion-option>
+              <ion-option value="terror">Terror</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Descreva sobre você e seus objetivos.</ion-label>
+            <ion-input required autocorrect="on" autocomplete="on" type="text" formControlName="descricao"></ion-input>
+        </ion-item>
+
+      </ion-list>
+      <button ion-button positive full block type="submit" >Salvar</button>
     </form>
+    
+    <!-- [disabled]="usuario.invalid" " -->
 </ion-content>
