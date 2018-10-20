@@ -2,7 +2,7 @@ const User = require('../Models/userModel')
 
 exports.createUser = (req, res, next) => {
 
-    console.log('\n Requisição : \n', req.body)
+  console.log('\n Requisição : \n', req.body)
   User.create({
     email:        req.body.email,
     senha:        req.body.senha,
@@ -15,8 +15,8 @@ exports.createUser = (req, res, next) => {
     dificuldade:  req.body.dificuldade,
     esportes:     req.body.esportes,
     musicas:      req.body.musicas,
-    descricao:    req.body.descricao,
-    filmes:       req.body.filmes
+    filmes:       req.body.filmes,
+    descricao:    req.body.descricao
   }, (err, user) => {
     if (err)
       return res.status(500).send({message: 'Error creating user', error: err})

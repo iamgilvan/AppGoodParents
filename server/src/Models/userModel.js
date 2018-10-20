@@ -45,14 +45,14 @@ var UserSchema = new mongoose.Schema({
         type: String,
         required: [true, 'validity is required']
     },
+    filmes: {
+        type: String,
+        required: [true, 'validity is required']
+    },
     descricao: {
         type: String,
         required: [true, 'validity is required']
     },
-    filmes: {
-        type: String,
-        required: [true, 'validity is required']
-    }
 }, {
   timestamps: true
 })

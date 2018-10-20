@@ -1,6 +1,6 @@
 const express           = require('express')
 const UserController    = require('../Controller/UsersController')
-module.exports = function (app)  {
+module.exports = (app) => {
     const apiRoutes = express.Router()
 
     app.use(
