@@ -13,6 +13,7 @@ import { LoginProvider } from '../../providers/login/login';
 export class LoginPage {
 
   public loginForm: FormGroup;
+  public usuario: any = []
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -34,9 +35,21 @@ export class LoginPage {
 
     console.log(this.loginForm.value);
     this.loginProvider.GetLoginApi(this.loginForm.value.email, this.loginForm.value.senha)
-      .then((res) => {
-        this.navCtrl.setRoot(HomePage)
-        this.showToast('Bem vindo!', 1500)
+      .then((resultado) => {
+        this.usuario = JSON.parse(resultado["_body"].replace("[", "").replace("]",""));
+        
+        // verificar se usuário pode fazer login
+        if(this.usuario.padrinho === false)
+        {
+          this.showToast('Área destinada a padrinhos!', 2500)
+          this.usuario = [];
+        }else
+        {
+          // Passando o usuário logado como parametro
+          this.navCtrl.push(HomePage, this.usuario);
+          this.showToast('Bem vindo!', 1500)
+        }
+        
       })
       .catch((err) => {
         this.showToast('Falha ao conectar com o servidor!', 2500)
