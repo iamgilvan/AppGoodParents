@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder, Validators } from '@angular/forms';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CadastroPage } from '../cadastro/cadastro';
+import { HomePage } from '../home/home';
+import { LoginProvider } from '../../providers/login/login';
 
 @IonicPage()
 @Component({
@@ -10,20 +12,17 @@ import { CadastroPage } from '../cadastro/cadastro';
 })
 export class LoginPage {
 
-  public loginForm: any;
-  messageEmail    = ""
-  messagePassword = "";
-  errorEmail      = false;
-  errorPassword   = false;
+  public loginForm: FormGroup;
 
-  /*constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }*/
-
-  constructor(public navCtrl: NavController, formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public loginProvider: LoginProvider,
+    public toastCtrl: ToastController) {
+  
     this.loginForm = formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(20),
-      Validators.required])],
+      email:    ['', Validators.required],
+      senha:    ['', Validators.required],
     });
   }
 
@@ -32,29 +31,30 @@ export class LoginPage {
   }
 
   login() {
-    let { email, password } = this.loginForm.controls;
- 
-    if (!this.loginForm.valid) {
-      if (!email.valid) {
-        this.errorEmail   = true;
-        this.messageEmail = "Ops! Email inválido";
-      } else {
-        this.messageEmail = "";
-      }
- 
-      if (!password.valid) {
-        this.errorPassword = true;
-        this.messagePassword ="A senha precisa ter de 6 a 20 caracteres"
-      } else {
-        this.messagePassword = "";
-      }
-    }
-    else {
-      alert("Login Realizado");
-    }
+
+    console.log(this.loginForm.value);
+    this.loginProvider.GetLoginApi(this.loginForm.value.email, this.loginForm.value.senha)
+      .then((res) => {
+        this.navCtrl.setRoot(HomePage)
+        this.showToast('Bem vindo!', 1500)
+      })
+      .catch((err) => {
+        this.showToast('Falha ao conectar com o servidor!', 2500)
+        console.error(err)
+      })
   }
 
   pushPage(){
     this.navCtrl.push(CadastroPage);
+  }
+
+  showToast(message: string, duration?: number) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: duration,
+      showCloseButton: true,
+      closeButtonText: "OK"
+    });
+    toast.present();
   }
 }

@@ -44,7 +44,7 @@ exports.getAllUser = (req, res, next) => {
 }
 
 exports.getOneUser = (req, res, next) => {
-  User.findById(req.params.id, (err, user) => {
+  User.find({ email: req.params.email, senha: req.params.senha}, (err, user) => {
     if (err)
       return res.status(500).send({message: 'Error fetching user', error: err})
 
@@ -107,3 +107,4 @@ exports.deleteUser = (req, res, next) => {
     })
   })
 }
+
