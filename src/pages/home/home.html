@@ -1,9 +1,13 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Usuários</ion-title>
+    <ion-title>Alunos</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content padding>
+  <ion-item>
+      <ion-label>Prazo revaleção</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" name="dataPrazo" [(ngModel)]="dataPrazo"></ion-datetime>
+  </ion-item>
   <ion-list>
     <ion-item-sliding *ngFor="let user of usuarios">
       <ion-item>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, LoadingController } from 'ionic-angular';
+import { NavController, ToastController, LoadingController, NavParams } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { LoginPage } from '../login/login';
 //import Moment from 'moment'
@@ -9,18 +9,21 @@ import { LoginPage } from '../login/login';
 })
 export class HomePage {
 
+  public dataPrazo: string = new Date(Date.UTC(2018, 9 - 1, 25)).toISOString();
   public usuarios: any = [];
+  public logado: any = {};
   public loading
-  //public moment: any = Moment;
 
   constructor(public navCtrl: NavController,
     public userService: UsersProvider,
     public toastCtrl: ToastController,
+    public navParams: NavParams,
     public loadingCtrl: LoadingController,) {
 
   }
 
   ionViewDidLoad() {
+    this.logado = this.navParams.data;
     this.getAllUsuarios()
   }
 

@@ -23,7 +23,7 @@ export class CadastroPage {
         nome:         [null, Validators.required],
         sobrenome:    [null, Validators.required],
         email:        [null, Validators.required],
-        senha:        [null, Validators.compose([Validators.minLength(5), Validators.maxLength(10), Validators.required])],
+        senha:        [null, Validators.compose([Validators.minLength(5), Validators.maxLength(20), Validators.required])],
         nascimento :  [null, Validators.required],
         estado:       [null, Validators.required],
         padrinho:     [null, Validators.required],
