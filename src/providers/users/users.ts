@@ -21,4 +21,19 @@ export class UsersProvider {
     });
   }
 
+  getUsuarios(){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      this.http.get('http://localhost:8080/user', {headers: headers})
+        .subscribe(res => {
+          let data = res.json()
+          resolve(data);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
 }
