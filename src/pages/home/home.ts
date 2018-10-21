@@ -45,6 +45,21 @@ export class HomePage {
       })
   }
 
+  deletar(id) {
+    this.userService.deleteUsuario(id)
+      .then(() => {
+        this.showLoader()
+        this.mostraMenssagem('Produto excluído com sucesso', 1000)
+        setTimeout(() => {
+          this.loading.dismiss()
+          this.getAllUsuarios()
+        }, 1000);
+      })
+      .catch((err) => {
+        this.showToast('Falha ao conectar com o servidor!', 2500)
+      })
+  }
+
   showLoader() {
     this.loading = this.loadingCtrl.create({
       content: 'Aguarde...'
@@ -62,5 +77,15 @@ export class HomePage {
     });
     toast.present();
   };
+
+  mostraMenssagem(message: string, duration?: number) {
+    let menssagem = this.toastCtrl.create({
+      message: message,
+      duration: duration,
+      showCloseButton: true,
+      closeButtonText: "Ok"
+    });
+    menssagem.present();
+  }
 
 }

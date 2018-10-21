@@ -36,4 +36,19 @@ export class UsersProvider {
     });
   }
 
+  deleteUsuario(id){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      this.http.delete('http://localhost:8080/user/' + id, {headers: headers})
+        .subscribe( res => {
+          let data = res.json()
+          resolve(data);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
 }
