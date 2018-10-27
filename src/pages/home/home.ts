@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController, LoadingController, NavParams } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { LoginPage } from '../login/login';
+import { DetalhePage } from '../detalhe/detalhe';
 //import Moment from 'moment'
 @Component({
   selector: 'page-home',
@@ -57,7 +58,7 @@ export class HomePage {
       })
   }
 
-  deletar(id) {
+  Deletar(id) {
     this.userService.deleteUsuario(id)
       .then(() => {
         this.showLoader()
@@ -196,5 +197,10 @@ export class HomePage {
       }
     }
 
+  };
+
+  Detalhe(user)
+  {
+    this.navCtrl.push(DetalhePage, user);
   };
 }

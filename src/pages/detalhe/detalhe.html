@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>GoodParents</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <div>
+      <ion-avatar class="avatar">
+          <img src="assets/imgs/users-icon.png">
+      </ion-avatar>
+    </div>
+  </ion-item>
+  <ion-item>
+    <div class="titulo">
+        <span>{{aluno.nome}}</span>
+        <span>{{aluno.sobrenome}}</span><br>
+    </div> 
+  </ion-item>
+
+  <ion-item>
+    <span><b>Estado:</b></span>
+    <p>{{aluno.estado}}</p>
+  </ion-item>
+
+  <ion-item text-wrap>
+    <span><b>Sobre:</b></span>
+    <p>{{aluno.descricao}}</p>
+  </ion-item>  
+
+  <ion-item>
+    <span><b>Matérias que tem facilidades:</b></span>
+    <p>{{aluno.facilidade}}</p>
+  </ion-item>
+
+  <ion-item>
+    <span><b>Matérias que tem dificuldades:</b></span>
+    <p>{{aluno.dificuldade}}<p>
+  </ion-item>
+
+  <ion-item>
+    <span><b>Curte filmes de:</b></span>
+    <p>{{aluno.filmes}}</p>
+  </ion-item>
+
+  <ion-item>
+    <span><b>Curte músicas:</b></span>
+    <p>{{aluno.musicas}}</p>
+  </ion-item>
+
+  <ion-item>
+    <span><b>Curte esportes:</b></span>
+    <p>{{aluno.esportes}}</p>
+  </ion-item>
+
+</ion-content>

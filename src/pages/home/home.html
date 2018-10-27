@@ -22,17 +22,17 @@
         <p><b>Estado:</b> {{user.estado}}</p>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button color="primary">
+        <button ion-button ion-olny color="primary">
           <ion-icon name="create"></ion-icon>
-          Editar
+          <!--Editar-->
         </button>
-        <button ion-button color="secondary">
+        <button ion-button color="secondary" icon-only (click)="Detalhe(user)">
           <ion-icon name="information-circle"></ion-icon>
-          Detalhes
+          <!--Detalhes-->
           </button>
-        <button ion-button color="danger" icon-only (click)="deletar(user._id)">
+        <button ion-button color="danger" icon-only (click)="Deletar(user._id)">
           <ion-icon name="trash"></ion-icon>
-          Deletar
+          <!--Deletar-->
         </button>
       </ion-item-options>  
     </ion-item-sliding>
