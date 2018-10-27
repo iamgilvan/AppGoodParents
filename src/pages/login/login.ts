@@ -46,7 +46,8 @@ export class LoginPage {
         }else
         {
           // Passando o usuário logado como parametro
-          this.navCtrl.push(HomePage, this.usuario);
+          //this.navCtrl.push(HomePage, this.usuario);
+          this.navCtrl.setRoot(HomePage, this.usuario);
           this.showToast('Bem vindo!', 1500)
         }
         
