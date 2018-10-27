@@ -32,7 +32,7 @@ exports.createUser = (req, res, next) => {
 }
 
 exports.getAllUser = (req, res, next) => {
-  User.find().exec((err, users) => {
+  User.find({"padrinho" : false}).exec((err, users) => {
     if (err)
       return res.status(500).send({error: err})
 
