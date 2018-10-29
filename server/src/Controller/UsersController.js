@@ -1,11 +1,13 @@
 const User = require('../Models/userModel')
+var crypto = require('crypto');
+
 
 exports.createUser = (req, res, next) => {
 
   console.log('\n Requisição : \n', req.body)
   User.create({
     email:        req.body.email,
-    senha:        req.body.senha,
+    senha:        crypto.createHash('md5').update(req.body.senha).digest('hex'),
     nome:         req.body.nome,
     sobrenome:    req.body.sobrenome,
     nascimento:   req.body.nascimento,
@@ -32,7 +34,7 @@ exports.createUser = (req, res, next) => {
 }
 
 exports.getAllUser = (req, res, next) => {
-  User.find().exec((err, users) => {
+  User.find({"padrinho" : false}).exec((err, users) => {
     if (err)
       return res.status(500).send({error: err})
 
@@ -44,7 +46,8 @@ exports.getAllUser = (req, res, next) => {
 }
 
 exports.getOneUser = (req, res, next) => {
-  User.findById(req.params.id, (err, user) => {
+  //User.find({ email: req.params.email, senha: req.params.senha}, (err, user) => {
+  User.find({ email: req.params.email, senha: crypto.createHash('md5').update(req.params.senha).digest('hex')}, (err, user) => {
     if (err)
       return res.status(500).send({message: 'Error fetching user', error: err})
 
@@ -107,3 +110,4 @@ exports.deleteUser = (req, res, next) => {
     })
   })
 }
+

@@ -1,14 +1,49 @@
+
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-title>Alunos</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-item>
+      <!-- <ion-label>Prazo revaleção</ion-label> -->
+      <!-- <ion-datetime displayFormat="DD/MM/YYYY" name="dataPrazo" [(ngModel)]="dataPrazo"></ion-datetime> -->
+      <span>Prazo revelação:  28/04/1990</span>
+  </ion-item>
+  <ion-list>
+    <ion-item-sliding #slidingItem *ngFor="let user of usuarios">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="assets/imgs/users-icon.png">
+        </ion-avatar>
+        <div class="titulo">
+          <span>{{user.nome}}</span>
+          <span>{{user.sobrenome}}</span>
+        </div> 
+        <p><b>Sobre: </b> {{user.descricao}}</p>
+        <p><b>Estado:</b> {{user.estado}}</p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button ion-olny color="primary" (click)="Editar(user)">
+          <ion-icon name="create"></ion-icon>
+          <!--Editar-->
+        </button>
+        <button ion-button color="secondary" icon-only (click)="Detalhe(user)">
+          <ion-icon name="information-circle"></ion-icon>
+          <!--Detalhes-->
+          </button>
+        <button ion-button color="danger" icon-only (click)="Deletar(user._id, slidingItem)">
+          <ion-icon name="trash"></ion-icon>
+          <!--Deletar-->
+        </button>
+      </ion-item-options>  
+    </ion-item-sliding>
+    
+    <button ion-button block outline (click)="perfil(logado)">
+      <ion-icon name="person"></ion-icon>
+      Meu Perfil
+    </button>
+    
+  </ion-list>
 </ion-content>

@@ -15,9 +15,8 @@ module.exports = (app) => {
     app.use('/user',
         apiRoutes.post('/', UserController.createUser),
         apiRoutes.get('/', UserController.getAllUser),
-        apiRoutes.get('/user/:id', UserController.getOneUser),
+        apiRoutes.get('/login/:email/:senha', UserController.getOneUser),
         apiRoutes.delete('/user/:id', UserController.deleteUser),
-        apiRoutes.put('/user/:id', UserController.updateUser),
+        apiRoutes.put('/user/:id', UserController.updateUser)
     )
-
 }

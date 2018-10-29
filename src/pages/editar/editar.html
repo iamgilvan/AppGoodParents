@@ -1,0 +1,236 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>editar</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+    <form padding [formGroup]="usuario" (ngSubmit)="postDados()" padding class="form">
+        <ion-list no-lines>
+          <div>
+            <ion-item>
+              <ion-label floating>Name</ion-label>
+              <ion-input type="text" name="nome" formControlName="nome" minlength="2"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="usuario.get('nome').errors && usuario.get('nome').dirty">
+              <p class="error" *ngIf="usuario.get('nome').hasError('required')">Campo obrigatório</p>
+            </ion-item>
+          </div>
+  
+          <div>
+            <ion-item>
+              <ion-label floating>Último Nome</ion-label>
+              <ion-input type="text" name="sobrenome" formControlName="sobrenome"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="usuario.get('sobrenome').errors && usuario.get('sobrenome').dirty">
+                <p class="error" *ngIf="usuario.get('sobrenome').hasError('required')">Campo obrigatório</p>
+            </ion-item>
+          </div>
+  
+          <div>
+            <ion-item>
+              <ion-label floating>E-mail</ion-label>
+              <ion-input type="email" name="email" formControlName="email"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="usuario.get('email').errors && usuario.get('email').dirty">
+                <p class="error" *ngIf="usuario.get('email').hasError('required')">Campo obrigatório</p>
+            </ion-item>
+          </div>
+  
+          <ion-item>
+              <ion-label floating>Senha</ion-label>
+              <ion-input type="password" formControlName="senha"></ion-input>
+          </ion-item>
+  
+          <div>
+            <ion-item>
+              <ion-label floating>Data de Nascimento</ion-label>
+              <ion-datetime displayFormat="D/M/YYYY" pickerFormat="D/M/YYYY" name="nascimento" formControlName="nascimento"></ion-datetime>
+            </ion-item>
+            <ion-item *ngIf="usuario.get('nascimento').errors && usuario.get('nascimento').dirty">
+                <p class="error" *ngIf="usuario.get('nascimento').hasError('required')">Campo obrigatório</p>
+            </ion-item>
+          </div>
+  
+          <div>
+            <ion-item>
+            <ion-label floating>Estado origem</ion-label>
+            <ion-select okText="Selecionar" cancelText="Voltar" formControlName="estado">
+              <ion-option value="AC">Acre</ion-option>
+              <ion-option value="AL">Alagoas</ion-option>
+              <ion-option value="AP">Amapá</ion-option>
+              <ion-option value="AM">Amazonas</ion-option>
+              <ion-option value="BA">Bahia</ion-option>
+              <ion-option value="CE">Ceará</ion-option>
+              <ion-option value="DF">Distrito Federal</ion-option>
+              <ion-option value="ES">Espírito Santo</ion-option>
+              <ion-option value="GO">Goiás</ion-option>
+              <ion-option value="MA">Maranhão</ion-option>
+              <ion-option value="MT">Mato Grosso</ion-option>
+              <ion-option value="MS">Mato Grosso do Sul</ion-option>
+              <ion-option value="MG">Minas Gerais</ion-option>
+              <ion-option value="PA">Pará</ion-option>
+              <ion-option value="PB">Paraíba</ion-option>
+              <ion-option value="PR">Paraná</ion-option>
+              <ion-option value="PE">Pernambuco</ion-option>
+              <ion-option value="PI">Piauí</ion-option>
+              <ion-option value="RJ">Rio de Janeiro</ion-option>
+              <ion-option value="RN">Rio Grande do Norte</ion-option>
+              <ion-option value="RS">Rio Grande do Sul</ion-option>
+              <ion-option value="RO">Rondônia</ion-option>
+              <ion-option value="RR">Roraima</ion-option>
+              <ion-option value="SC">Santa Catarina</ion-option>
+              <ion-option value="SP">São Paulo</ion-option>
+              <ion-option value="SE">Sergipe</ion-option>
+              <ion-option value="TO">Tocantins</ion-option>
+            </ion-select>
+            </ion-item>
+            <ion-item *ngIf="usuario.get('estado').errors && usuario.get('estado').dirty">
+                <p class="error" *ngIf="usuario.get('estado').hasError('required')">Campo obrigatório</p>
+            </ion-item>
+          </div>
+  
+          <div>
+            <ion-item>
+                <ion-label floating>Apadrinhado ou Padrinho?</ion-label>
+                <ion-select formControlName="padrinho">
+                  <ion-option value="false">Apadrinhado</ion-option>
+                  <ion-option value="true">Padrinho</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item *ngIf="usuario.get('padrinho').errors && usuario.get('padrinho').dirty">
+                <p class="error" *ngIf="usuario.get('padrinho').hasError('required')">Campo obrigatório</p>
+            </ion-item>
+          </div>
+  
+          <div>
+            <ion-item>
+            <ion-label floating>Matéria que possui <strong>facilidade</strong>?</ion-label>
+            <ion-select okText="Selecionar" cancelText="Voltar" formControlName="facilidade" multiple="true">
+              <ion-option value="português">Português</ion-option>
+              <ion-option value="matemática">Matemática</ion-option>
+              <ion-option value="história">História</ion-option>
+              <ion-option value="geografia">Geografia</ion-option>
+              <ion-option value="biologia">Biologia</ion-option>
+              <ion-option value="biografia">Biografia</ion-option>
+              <ion-option value="física">Física</ion-option>
+              <ion-option value="química">Química</ion-option>
+              <ion-option value="inglês">Inglês</ion-option>
+              <ion-option value="espanhol">Espanhol</ion-option>
+              <ion-option value="filosofia">Filosofia</ion-option>
+              <ion-option value="sociologia">Sociologia</ion-option>
+            </ion-select>
+            </ion-item>
+            <ion-item *ngIf="usuario.get('facilidade').errors && usuario.get('facilidade').dirty">
+                <p class="error" *ngIf="usuario.get('facilidade').hasError('required')">Campo obrigatório</p>
+            </ion-item>
+          </div>
+  
+          <div>
+            <ion-item>
+            <ion-label floating>Matéria que possui <strong>dificuldade</strong>?</ion-label>
+            <ion-select okText="Selecionar" cancelText="Voltar" formControlName="dificuldade" multiple="true">
+              <ion-option value="português">Português</ion-option>
+              <ion-option value="matemática">Matemática</ion-option>
+              <ion-option value="história">História</ion-option>
+              <ion-option value="geografia">Geografia</ion-option>
+              <ion-option value="biologia">Biologia</ion-option>
+              <ion-option value="biografia">Biografia</ion-option>
+              <ion-option value="física">Física</ion-option>
+              <ion-option value="química">Química</ion-option>
+              <ion-option value="inglês">Inglês</ion-option>
+              <ion-option value="espanhol">Espanhol</ion-option>
+              <ion-option value="filosofia">Filosofia</ion-option>
+              <ion-option value="sociologia">Sociologia</ion-option>
+            </ion-select>
+            </ion-item>
+            <ion-item *ngIf="usuario.get('dificuldade').errors && usuario.get('dificuldade').dirty">
+                <p class="error" *ngIf="usuario.get('dificuldade').hasError('required')">Campo obrigatório</p>
+            </ion-item>
+          </div>
+  
+          <div>
+            <ion-item>
+              <ion-label floating>Esportes preferidos.</ion-label>
+              <ion-select okText="Selecionar" cancelText="Voltar" formControlName="esportes" multiple="true">
+                <ion-option value="futebol">Futebol</ion-option>
+                <ion-option value="vôlei">Vôlei</ion-option>
+                <ion-option value="tênis de Mesa">Tênis de Mesa</ion-option>
+                <ion-option value="natação">Natação</ion-option>
+                <ion-option value="futsal">Futsal</ion-option>
+                <ion-option value="capoeira">Capoeira</ion-option>
+                <ion-option value="skate">Skate</ion-option>
+                <ion-option value="surfe">Surfe</ion-option>
+                <ion-option value="judô">Judô</ion-option>
+                <ion-option value="atletismo">Atletismo</ion-option>
+                <ion-option value="nenhum">Nenhum</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item *ngIf="usuario.get('esportes').errors && usuario.get('esportes').dirty">
+                <p class="error" *ngIf="usuario.get('esportes').hasError('required')">Campo obrigatório</p>
+            </ion-item>
+          </div>
+  
+          <div>
+            <ion-item>
+              <ion-label floating>Estilos de músicas preferidos.</ion-label>
+              <ion-select okText="Selecionar" cancelText="Voltar" formControlName="musicas" multiple="true">
+                <ion-option value="sertanejo">Sertanejo</ion-option>
+                <ion-option value="mpb">MPB</ion-option>
+                <ion-option value="samba-pagode">Samba/Pagode</ion-option>
+                <ion-option value="forró">Forró</ion-option>
+                <ion-option value="rock">Rock</ion-option>
+                <ion-option value="eletrônica">Eletrônica</ion-option>
+                <ion-option value="gospel">Gospel</ion-option>
+                <ion-option value="axé">Axé</ion-option>
+                <ion-option value="funk">Funk</ion-option>
+              </ion-select>
+            </ion-item>
+            <ion-item *ngIf="usuario.get('musicas').errors && usuario.get('musicas').dirty">
+                <p class="error" *ngIf="usuario.get('musicas').hasError('required')">Campo obrigatório</p>
+            </ion-item>
+          </div>
+  
+          <div>
+            <ion-item>
+            <ion-label floating>Gêneros de filmes preferidos.</ion-label>
+            <ion-select okText="Selecionar" cancelText="Voltar" formControlName="filmes" multiple="true">
+              <ion-option value="ação">Ação</ion-option>
+              <ion-option value="animação">Animação</ion-option>
+              <ion-option value="aventura">Aventura</ion-option>
+              <ion-option value="comédia">Comédia</ion-option>
+              <ion-option value="documentários">Documentários</ion-option>
+              <ion-option value="drama">Drama</ion-option>
+              <ion-option value="fantasia">Fantasia</ion-option>
+              <ion-option value="faroeste">Faroeste</ion-option>
+              <ion-option value="ficção científica">Ficção científica</ion-option>
+              <ion-option value="séries">Séries</ion-option>
+              <ion-option value="guerra">Guerra</ion-option>
+              <ion-option value="musical">Musical</ion-option>
+              <ion-option value="policial">Policial</ion-option>
+              <ion-option value="romance">Romance</ion-option>
+              <ion-option value="suspense">Suspense</ion-option>
+              <ion-option value="terror">Terror</ion-option>
+            </ion-select>
+            </ion-item>
+            <ion-item *ngIf="usuario.get('filmes').errors && usuario.get('filmes').dirty">
+                <p class="error" *ngIf="usuario.get('filmes').hasError('required')">Campo obrigatório</p>
+            </ion-item>
+          </div>
+  
+          <div>
+            <ion-item>
+                <ion-label floating>Descreva sobre você.</ion-label>
+                <ion-input autocorrect="on" autocomplete="on" type="text" formControlName="descricao"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="usuario.get('descricao').errors && usuario.get('descricao').dirty">
+                <p class="error" *ngIf="usuario.get('descricao').hasError('required')">Campo obrigatório</p>
+            </ion-item>
+          </div>
+  
+        </ion-list>
+        <button ion-button positive full block type="submit" [disabled]="usuario.invalid">Salvar</button>
+      </form>
+
+</ion-content>

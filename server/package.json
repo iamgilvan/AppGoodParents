@@ -35,6 +35,7 @@
       "passport-jwt": "^4.0.0",
       "passport-local": "^1.0.0",
       "path": "^0.12.7",
-      "swagger-jsdoc": "^1.9.7"
+      "swagger-jsdoc": "^1.9.7",
+      "bcrypt-nodejs": "0.0.3"
     }
   }

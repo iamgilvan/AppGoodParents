@@ -92,10 +92,10 @@
 
         <div>
           <ion-item>
-              <ion-label floating>Deseja ser padrinho?</ion-label>
+              <ion-label floating>Apadrinhado ou Padrinho?</ion-label>
               <ion-select formControlName="padrinho">
-                <ion-option value="false">Não</ion-option>
-                <ion-option value="true">Sim</ion-option>
+                <ion-option value="false">Apadrinhado</ion-option>
+                <ion-option value="true">Padrinho</ion-option>
               </ion-select>
           </ion-item>
           <ion-item *ngIf="usuario.get('padrinho').errors && usuario.get('padrinho').dirty">
@@ -163,6 +163,7 @@
               <ion-option value="surfe">Surfe</ion-option>
               <ion-option value="judô">Judô</ion-option>
               <ion-option value="atletismo">Atletismo</ion-option>
+              <ion-option value="nenhum">Nenhum</ion-option>
             </ion-select>
           </ion-item>
           <ion-item *ngIf="usuario.get('esportes').errors && usuario.get('esportes').dirty">

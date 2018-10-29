@@ -21,4 +21,52 @@ export class UsersProvider {
     });
   }
 
+  getUsuarios(){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      this.http.get('http://localhost:8080/user', {headers: headers})
+        .subscribe(res => {
+          let data = res.json()
+          resolve(data);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  deleteUsuario(id){
+    return new Promise((resolve, reject) => {
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      this.http.delete('http://localhost:8080/user/' + id, {headers: headers})
+        .subscribe( res => {
+          let data = res.json()
+          resolve(data);
+        }, (err) => {
+          reject(err);
+        });
+    });
+  }
+
+  alterarUsuario(id, credential){
+    return new Promise((resolve, reject) => {
+      
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      this.http.put('http://localhost:8080/user/' + id, JSON.stringify(credential) , {headers: headers})
+      .subscribe( res => {
+        let data = res.json()
+        resolve(data);
+      }, (err) => {
+        reject(err);
+      });
+
+    });
+    
+  }
+
 }
