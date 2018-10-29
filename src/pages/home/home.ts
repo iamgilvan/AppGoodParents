@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ToastController, LoadingController, NavParams } from 'ionic-angular';
+import { NavController, ToastController, LoadingController, NavParams, ItemSliding } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
 import { LoginPage } from '../login/login';
 import { DetalhePage } from '../detalhe/detalhe';
@@ -59,13 +59,15 @@ export class HomePage {
       })
   }
 
-  Deletar(id) {
+  Deletar(id, slidingItem: ItemSliding) {
+    slidingItem.close();
     this.userService.deleteUsuario(id)
       .then(() => {
         this.showLoader()
         this.mostraMenssagem('Aluno excluído com sucesso', 1000)
         setTimeout(() => {
-          this.loading.dismiss()
+          this.loading.dismissAll()
+          this.usuarios = []
           this.getAllUsuarios()
         }, 1000);
       })
@@ -208,5 +210,10 @@ export class HomePage {
   perfil(user)
   {
     this.navCtrl.push(MenuPage, user);
+  };
+
+  Editar(user)
+  {
+    this.navCtrl.push(EditarPage, user)
   };
 }

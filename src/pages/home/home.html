@@ -12,7 +12,7 @@
       <span>Prazo revelação:  28/04/1990</span>
   </ion-item>
   <ion-list>
-    <ion-item-sliding *ngFor="let user of usuarios">
+    <ion-item-sliding #slidingItem *ngFor="let user of usuarios">
       <ion-item>
         <ion-avatar item-start>
           <img src="assets/imgs/users-icon.png">
@@ -25,7 +25,7 @@
         <p><b>Estado:</b> {{user.estado}}</p>
       </ion-item>
       <ion-item-options side="right">
-        <button ion-button ion-olny color="primary">
+        <button ion-button ion-olny color="primary" (click)="Editar(user)">
           <ion-icon name="create"></ion-icon>
           <!--Editar-->
         </button>
@@ -33,7 +33,7 @@
           <ion-icon name="information-circle"></ion-icon>
           <!--Detalhes-->
           </button>
-        <button ion-button color="danger" icon-only (click)="Deletar(user._id)">
+        <button ion-button color="danger" icon-only (click)="Deletar(user._id, slidingItem)">
           <ion-icon name="trash"></ion-icon>
           <!--Deletar-->
         </button>

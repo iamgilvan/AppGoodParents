@@ -17,8 +17,6 @@ export class LoginProvider {
 
       this.http.get('http://localhost:8080/user/login/' + email + '/' + senha, { headers: headers })
         .subscribe(res => {
-          //var data = res.json();
-          //console.log(data);
           resolve(res);
         }, (err) => {
           reject(err);
