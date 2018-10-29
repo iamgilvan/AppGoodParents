@@ -11,6 +11,8 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { DetalhePage } from '../pages/detalhe/detalhe';
+import { MenuPage } from '../pages/menu/menu';
+import { EditarPage } from '../pages/editar/editar';
 
 import { UsersProvider } from '../providers/users/users';
 import { LoginProvider } from '../providers/login/login';
@@ -21,7 +23,9 @@ import { LoginProvider } from '../providers/login/login';
     HomePage,
     LoginPage,
     CadastroPage,
-    DetalhePage
+    DetalhePage,
+    MenuPage,
+    EditarPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,9 @@ import { LoginProvider } from '../providers/login/login';
     HomePage,
     LoginPage,
     CadastroPage,
-    DetalhePage
+    DetalhePage,
+    MenuPage,
+    EditarPage
   ],
   providers: [
     StatusBar,

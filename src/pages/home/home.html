@@ -1,12 +1,15 @@
+
 <ion-header>
   <ion-navbar>
     <ion-title>Alunos</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding>
   <ion-item>
-      <ion-label>Prazo revaleção</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" name="dataPrazo" [(ngModel)]="dataPrazo"></ion-datetime>
+      <!-- <ion-label>Prazo revaleção</ion-label> -->
+      <!-- <ion-datetime displayFormat="DD/MM/YYYY" name="dataPrazo" [(ngModel)]="dataPrazo"></ion-datetime> -->
+      <span>Prazo revelação:  28/04/1990</span>
   </ion-item>
   <ion-list>
     <ion-item-sliding *ngFor="let user of usuarios">
@@ -36,5 +39,11 @@
         </button>
       </ion-item-options>  
     </ion-item-sliding>
+    
+    <button ion-button block outline (click)="perfil(logado)">
+      <ion-icon name="person"></ion-icon>
+      Meu Perfil
+    </button>
+    
   </ion-list>
 </ion-content>

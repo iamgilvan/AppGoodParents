@@ -1,0 +1,63 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Perfil</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item>
+        <div>
+          <ion-avatar class="avatar">
+              <img src="assets/imgs/users-icon.png">
+          </ion-avatar>
+        </div>
+      </ion-item>
+      <ion-item>
+        <div class="titulo">
+            <span>{{logado.nome}}</span>
+            <span>{{logado.sobrenome}}</span><br>
+        </div> 
+      </ion-item>
+    
+      <ion-item>
+        <span><b>Estado:</b></span>
+        <p>{{logado.estado}}</p>
+      </ion-item>
+    
+      <ion-item text-wrap>
+        <span><b>Sobre:</b></span>
+        <p>{{logado.descricao}}</p>
+      </ion-item>  
+    
+      <ion-item>
+        <span><b>Matérias que tem facilidades:</b></span>
+        <p>{{logado.facilidade}}</p>
+      </ion-item>
+    
+      <ion-item>
+        <span><b>Matérias que tem dificuldades:</b></span>
+        <p>{{logado.dificuldade}}<p>
+      </ion-item>
+    
+      <ion-item>
+        <span><b>Curte filmes de:</b></span>
+        <p>{{logado.filmes}}</p>
+      </ion-item>
+    
+      <ion-item>
+        <span><b>Curte músicas:</b></span>
+        <p>{{logado.musicas}}</p>
+      </ion-item>
+    
+      <ion-item>
+        <span><b>Curte esportes:</b></span>
+        <p>{{logado.esportes}}</p>
+      </ion-item>
+    <button ion-button color="secondary" shape="round" outline block (click)="Editar(logado)">Editar Perfil</button>
+    <button ion-button color="danger" shape="round" outline block (click)="Deletar(logado._id)">Deletar conta.</button>
+      
+
+</ion-content>

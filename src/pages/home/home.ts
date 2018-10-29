@@ -3,7 +3,8 @@ import { NavController, ToastController, LoadingController, NavParams } from 'io
 import { UsersProvider } from '../../providers/users/users';
 import { LoginPage } from '../login/login';
 import { DetalhePage } from '../detalhe/detalhe';
-//import Moment from 'moment'
+import { EditarPage } from '../editar/editar';
+import { MenuPage } from '../menu/menu';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -62,7 +63,7 @@ export class HomePage {
     this.userService.deleteUsuario(id)
       .then(() => {
         this.showLoader()
-        this.mostraMenssagem('Produto excluído com sucesso', 1000)
+        this.mostraMenssagem('Aluno excluído com sucesso', 1000)
         setTimeout(() => {
           this.loading.dismiss()
           this.getAllUsuarios()
@@ -202,5 +203,10 @@ export class HomePage {
   Detalhe(user)
   {
     this.navCtrl.push(DetalhePage, user);
+  };
+
+  perfil(user)
+  {
+    this.navCtrl.push(MenuPage, user);
   };
 }

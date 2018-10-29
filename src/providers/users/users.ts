@@ -51,4 +51,22 @@ export class UsersProvider {
     });
   }
 
+  alterarUsuario(id, credential){
+    return new Promise((resolve, reject) => {
+      
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      this.http.put('http://localhost:8080/user/' + id, JSON.stringify(credential) , {headers: headers})
+      .subscribe( res => {
+        let data = res.json()
+        resolve(data);
+      }, (err) => {
+        reject(err);
+      });
+
+    });
+    
+  }
+
 }
