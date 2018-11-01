@@ -1,27 +1,27 @@
 <ion-header>
   <ion-navbar>
-    <ion-title style="background-color: #1a66ff"><i style="font-size: 1em; color:white">GoodParents</i></ion-title>
+    <ion-title><i>GoodParents</i></ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content style="background-color: #1a66ff" fixed>
+<ion-content fixed>
   <form padding [formGroup]="loginForm" (submit)="login()">
       <ion-list no-lines>
         <ion-item *ngIf="error" class="error">
             <p>Os dados informados não estão corretos.</p>
         </ion-item>
 
-        <ion-item style="background-color: #1a66ff">
-            <ion-label style="font-size: 1em; color:white" floating>E-mail</ion-label>
-          <ion-input style="font-size: 1em; color:white" formControlName="email" type="text" clearInput clearOnEdit="false"></ion-input>
+        <ion-item>
+            <ion-label floating>E-mail</ion-label>
+          <ion-input formControlName="email" type="text" clearInput clearOnEdit="false"></ion-input>
         </ion-item>
         <ion-item *ngIf="loginForm.get('email').errors && loginForm.get('email').dirty">
             <p class="error" *ngIf="loginForm.get('email').hasError('required')">Campo obrigatório</p>
         </ion-item>
 
-        <ion-item style="background-color: #1a66ff">
-            <ion-label style="font-size: 1em; color:white" floating>Senha</ion-label>
-          <ion-input style="font-size: 1em; color:white" formControlName="senha" type="password" clearInput clearOnEdit="false">
+        <ion-item>
+            <ion-label floating>Senha</ion-label>
+          <ion-input formControlName="senha" type="password" clearInput clearOnEdit="false">
           </ion-input>
         </ion-item>
         <ion-item *ngIf="loginForm.get('senha').errors && loginForm.get('senha').dirty">
@@ -30,9 +30,11 @@
       </ion-list>
     <button ion-button block color="primary">Login</button>
   </form>  
-  <img src="assets/imgs/logo-sesc.png"/>
+ 
+  <!-- <img src="assets/imgs/logo-sesc-mod.png" style="width:430px; height:150px;"/> -->
+ 
 </ion-content>
 
 <ion-footer>
-    <button ion-button color="danger" round block (click)="pushPage()">Cadastre-se</button>
+    <button ion-button color="light" round block (click)="pushPage()">Cadastre-se</button>
 </ion-footer> 
