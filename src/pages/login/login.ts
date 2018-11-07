@@ -27,23 +27,19 @@ export class LoginPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-  }
-
   login() {
 
     console.log(this.loginForm.value);
     this.loginProvider.GetLoginApi(this.loginForm.value.email, this.loginForm.value.senha)
       .then((resultado) => {
         this.usuario = JSON.parse(resultado["_body"].replace("[", "").replace("]",""));
-        
         // verificar se usuário pode fazer login
         if(this.usuario.padrinho === false)
         {
           this.showToast('Área destinada a padrinhos!', 2500)
           this.usuario = [];
-        }else
+        }
+        else
         {
           // Passando o usuário logado como parametro
           this.navCtrl.setRoot(HomePage, this.usuario);
@@ -52,8 +48,16 @@ export class LoginPage {
         
       })
       .catch((err) => {
-        this.showToast('Falha ao conectar com o servidor!', 2500)
-        console.error(err)
+        if (err.status === 404)
+        {
+          this.showToast('Senha ou email incorretos.', 2500)
+          console.error(err)
+        }
+        else
+        {
+          this.showToast('Falha ao conectar com o servidor!', 2500)
+          console.error(err)
+        }
       })
   }
 
