@@ -111,6 +111,10 @@ export class HomePage {
     this.esportesList     = this.logado.esportes.split(',')
     this.musicasList      = this.logado.musicas.split(',')  
     this.filmesList       = this.logado.filmes.split(',')  
+    if (!this.logado.foto)
+    {
+      this.logado.foto = "assets/imgs/users-icon.png";
+    }
 
     // iterar sobre todos os alunos
     for (let i = 0; i < todosUsuarios.length; i++)
@@ -118,6 +122,11 @@ export class HomePage {
       // pegar o usuário atual
       var controle    = false;
       var alunoAtual  = todosUsuarios[i];
+
+      if (!alunoAtual.foto)
+      {
+        alunoAtual.foto = "assets/imgs/users-icon.png";
+      }
       // verificar se é do mesmo estado
       if (this.logado.estado === alunoAtual.estado)
       {

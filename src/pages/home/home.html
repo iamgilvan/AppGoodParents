@@ -7,15 +7,14 @@
 
 <ion-content padding >
   <ion-item>
-      <!-- <ion-label>Prazo revaleção</ion-label> -->
-      <!-- <ion-datetime displayFormat="DD/MM/YYYY" name="dataPrazo" [(ngModel)]="dataPrazo"></ion-datetime> -->
       <span>Prazo revelação:  28/04/2019</span>
   </ion-item>
   <ion-list>
     <ion-item-sliding #slidingItem *ngFor="let user of usuarios">
       <ion-item>
         <ion-avatar item-start>
-          <img src="assets/imgs/users-icon.png">
+          <!-- <img src="assets/imgs/users-icon.png"> -->
+          <img src="{{ user.foto }}">
         </ion-avatar>
         <div class="titulo">
           <span>{{user.nome}}</span>

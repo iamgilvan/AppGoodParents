@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { UsersProvider } from '../../providers/users/users';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { LoginPage } from '../login/login';
+import { CameraOptions, Camera } from '@ionic-native/camera';
 
 @IonicPage()
 @Component({
@@ -11,11 +12,13 @@ import { LoginPage } from '../login/login';
 })
 export class CadastroPage {
   private usuario : FormGroup;
+  public  photo: string = '';
 
   constructor(public navCtrl: NavController,
      public userService: UsersProvider,
      public toastCtrl: ToastController,
      public navParams: NavParams,
+     public camera: Camera,
      public formBuilder : FormBuilder) 
   {
     this.usuario = this.formBuilder.group
@@ -23,7 +26,7 @@ export class CadastroPage {
         nome:         [null, Validators.required],
         sobrenome:    [null, Validators.required],
         email:        [null, Validators.required],
-        senha:        [null, Validators.compose([Validators.minLength(5), Validators.maxLength(20), Validators.required])],
+        senha:        [null, Validators.compose([Validators.minLength(4), Validators.maxLength(20), Validators.required])],
         nascimento :  [null, Validators.required],
         estado:       [null, Validators.required],
         padrinho:     [null, Validators.required],
@@ -36,21 +39,43 @@ export class CadastroPage {
     });
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CadastroPage');
+  takePicture() {
+    this.photo = '';
+ 
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: true,
+      targetWidth: 100,
+      targetHeight: 100
+    }
+ 
+    this.camera.getPicture(options)
+      .then((imageData) => {
+        let base64image = 'data:image/jpeg;base64,' + imageData;
+        this.photo = base64image; 
+      }, (error) => {
+        console.error(error);
+      })
+      .catch((error) => {
+        console.error(error);
+      })
   }
 
   postDados()
   {
-    console.log(this.usuario.value)
-    this.userService.createUser(this.usuario.value)
+    var novoValor = ', "foto":' + '\"' + this.photo + '\"}';
+    var json = JSON.stringify(this.usuario.value).replace("}",novoValor); 
+    this.userService.createUser(json)
       .then((res) => {
         this.showToast('Usuário cadastrado com sucesso!', 1500);        
         this.navCtrl.setRoot(LoginPage);
       })
       .catch((err) => {
-        this.showToast('Falha ao conectar com o servidor!', 2500)
-        console.error(err)
+          //this.showToast('Falha ao conectar com o servidor!', 2500)
+          console.error(err)
       });
   }
 

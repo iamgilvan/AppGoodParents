@@ -12,7 +12,7 @@ export class UsersProvider {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      this.http.post('https://good-parents-server.herokuapp.com/user', JSON.stringify(credential), {headers: headers})
+      this.http.post('https://good-parents-server.herokuapp.com/user', credential, {headers: headers})
         .subscribe(data => {
           resolve(data);
         }, (err) => {
@@ -57,7 +57,7 @@ export class UsersProvider {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      this.http.put('https://good-parents-server.herokuapp.com/user/' + id, JSON.stringify(credential) , {headers: headers})
+      this.http.put('https://good-parents-server.herokuapp.com/user/' + id, credential , {headers: headers})
       .subscribe( res => {
         let data = res.json()
         resolve(data);

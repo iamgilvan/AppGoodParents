@@ -6,6 +6,14 @@
 
 <ion-content padding >
     <form [formGroup]="usuario" (ngSubmit)="postDados()" padding>
+      <div>
+        <ion-avatar class="avatar">
+            <img src="{{ photo }}">
+            <button ion-button large block (click)="takePicture()">
+                <ion-icon name="camera"></ion-icon>
+            </button>
+        </ion-avatar>
+      </div>
       <ion-list no-lines>
         <div>
           <ion-item>
