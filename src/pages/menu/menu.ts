@@ -4,13 +4,6 @@ import { UsersProvider } from '../../providers/users/users';
 import { LoginPage } from '../login/login';
 import { EditarPage } from '../editar/editar';
 
-/**
- * Generated class for the MenuPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-menu',

@@ -13,7 +13,6 @@
     <ion-item-sliding #slidingItem *ngFor="let user of usuarios">
       <ion-item>
         <ion-avatar item-start>
-          <!-- <img src="assets/imgs/users-icon.png"> -->
           <img src="{{ user.foto }}">
         </ion-avatar>
         <div class="titulo">
@@ -26,15 +25,12 @@
       <ion-item-options side="right">
         <button ion-button ion-olny color="primary" (click)="Editar(user)">
           <ion-icon name="create"></ion-icon>
-          <!--Editar-->
         </button>
         <button ion-button color="secondary" icon-only (click)="Detalhe(user)">
           <ion-icon name="information-circle"></ion-icon>
-          <!--Detalhes-->
           </button>
         <button ion-button color="danger" icon-only (click)="Deletar(user._id, slidingItem)">
           <ion-icon name="trash"></ion-icon>
-          <!--Deletar-->
         </button>
       </ion-item-options>  
     </ion-item-sliding>

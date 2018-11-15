@@ -1,21 +1,18 @@
 import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-//import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class LoginProvider {
-  
-  constructor(public http: Http){
-    console.log('Hello LoginProvider Provider');
-  }
+  private urlApi: string = 'https://good-parents-server.herokuapp.com/user/login/';
+  constructor(public http: Http){}
 
-  GetLoginApi(email, senha) {
+  GetLoginApi(email: string, senha: string) {
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      this.http.get('https://good-parents-server.herokuapp.com/user/login/' + email + '/' + senha, { headers: headers })
+      this.http.get(this.urlApi + email + '/' + senha, { headers: headers })
         .subscribe(res => {
           resolve(res);
         }, (err) => {

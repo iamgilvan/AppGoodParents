@@ -4,15 +4,16 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class UsersProvider {
-
+  private _urlApi: string = 'https://good-parents-server.herokuapp.com/user';
+  private _urlApiAlternativa: string = 'https://good-parents-server.herokuapp.com/user/';
   constructor(public http: Http) { }
 
-  createUser(credential){
+  createUser(credential : string ){
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      this.http.post('https://good-parents-server.herokuapp.com/user', credential, {headers: headers})
+      this.http.post(this._urlApi, credential, {headers: headers})
         .subscribe(data => {
           resolve(data);
         }, (err) => {
@@ -26,7 +27,7 @@ export class UsersProvider {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      this.http.get('https://good-parents-server.herokuapp.com/user', {headers: headers})
+      this.http.get(this._urlApi, {headers: headers})
         .subscribe(res => {
           let data = res.json()
           resolve(data);
@@ -36,12 +37,11 @@ export class UsersProvider {
     });
   }
 
-  deleteUsuario(id){
+  deleteUsuario(id: string){
     return new Promise((resolve, reject) => {
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-
-      this.http.delete('https://good-parents-server.herokuapp.com/user/' + id, {headers: headers})
+      this.http.delete(this._urlApiAlternativa + id, {headers: headers})
         .subscribe( res => {
           let data = res.json()
           resolve(data);
@@ -51,22 +51,17 @@ export class UsersProvider {
     });
   }
 
-  alterarUsuario(id, credential){
+  alterarUsuario(id : string, credential: string){
     return new Promise((resolve, reject) => {
-      
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
-
-      this.http.put('https://good-parents-server.herokuapp.com/user/' + id, credential , {headers: headers})
+      this.http.put(this._urlApiAlternativa + id, credential , {headers: headers})
       .subscribe( res => {
         let data = res.json()
         resolve(data);
       }, (err) => {
         reject(err);
       });
-
     });
-    
   }
-
 }

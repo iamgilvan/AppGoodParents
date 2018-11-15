@@ -59,7 +59,7 @@ export class HomePage {
       })
   }
 
-  Deletar(id, slidingItem: ItemSliding) {
+  Deletar(id : string, slidingItem: ItemSliding) {
     slidingItem.close();
     this.userService.deleteUsuario(id)
       .then(() => {

@@ -103,8 +103,8 @@
             <ion-item>
                 <ion-label floating>Apadrinhado ou Padrinho?</ion-label>
                 <ion-select formControlName="padrinho">
-                  <ion-option value="false">Apadrinhado</ion-option>
-                  <ion-option value="true">Padrinho</ion-option>
+                  <ion-option value="false">Apadrinhado(a)</ion-option>
+                  <ion-option value="true">Padrinho/Madrinha</ion-option>
                 </ion-select>
             </ion-item>
             <ion-item *ngIf="usuario.get('padrinho').errors && usuario.get('padrinho').dirty">
@@ -160,7 +160,7 @@
   
           <div>
             <ion-item>
-              <ion-label floating>Esportes preferidos.</ion-label>
+              <ion-label floating>Esportes preferidos</ion-label>
               <ion-select okText="Selecionar" cancelText="Voltar" formControlName="esportes" multiple="true">
                 <ion-option value="futebol">Futebol</ion-option>
                 <ion-option value="vôlei">Vôlei</ion-option>
@@ -182,7 +182,7 @@
   
           <div>
             <ion-item>
-              <ion-label floating>Estilos de músicas preferidos.</ion-label>
+              <ion-label floating>Estilos de músicas preferidos</ion-label>
               <ion-select okText="Selecionar" cancelText="Voltar" formControlName="musicas" multiple="true">
                 <ion-option value="sertanejo">Sertanejo</ion-option>
                 <ion-option value="mpb">MPB</ion-option>
@@ -202,7 +202,7 @@
   
           <div>
             <ion-item>
-            <ion-label floating>Gêneros de filmes preferidos.</ion-label>
+            <ion-label floating>Gêneros de filmes preferidos</ion-label>
             <ion-select okText="Selecionar" cancelText="Voltar" formControlName="filmes" multiple="true">
               <ion-option value="ação">Ação</ion-option>
               <ion-option value="animação">Animação</ion-option>
