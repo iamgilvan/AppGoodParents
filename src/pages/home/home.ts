@@ -211,18 +211,9 @@ export class HomePage {
 
   };
 
-  Detalhe(user)
-  {
-    this.navCtrl.push(DetalhePage, user);
-  };
+  Detalhe(user) { this.navCtrl.push(DetalhePage, user); };
 
-  perfil(user)
-  {
-    this.navCtrl.push(MenuPage, user);
-  };
+  perfil(user) { this.navCtrl.push(MenuPage, user); };
 
-  Editar(user)
-  {
-    this.navCtrl.push(EditarPage, user)
-  };
+  Editar(user) { this.navCtrl.push(EditarPage, user)};
 }
